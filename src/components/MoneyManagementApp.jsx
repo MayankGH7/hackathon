@@ -172,7 +172,7 @@ const MoneyManagementApp = () => {
             </div>
             
             {/* Recent Transactions */}
-            <div className="bg-white rounded-xl shadow-md p-4 md:p-6 mb-6">
+            <div className="bg-white rounded-xl shadow-md p-3 sm:p-4 md:p-6 mb-6">
               <div className="flex justify-between items-center mb-4">
                 <h2 className="text-base md:text-lg font-semibold text-gray-800">
                   {searchQuery ? 'Search Results' : 'Recent Transactions'}
@@ -184,9 +184,9 @@ const MoneyManagementApp = () => {
               
               <div className="space-y-3 md:space-y-4">
                 {filteredTransactions.map(transaction => (
-                  <div key={transaction.id} className="flex justify-between items-center p-3 hover:bg-gray-50 rounded-lg border border-gray-50">
+                  <div key={transaction.id} className="flex justify-between items-center p-2 sm:p-3 hover:bg-gray-50 rounded-lg border border-gray-50">
                     <div className="flex items-center">
-                      <div className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center mr-3 text-xl">
+                      <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-gray-100 flex items-center justify-center mr-2 sm:mr-3 text-lg sm:text-xl">
                         {transaction.icon}
                       </div>
                       <div>
@@ -211,7 +211,7 @@ const MoneyManagementApp = () => {
             </div>
             
             {/* Upcoming Bills */}
-            <div className="bg-white rounded-xl shadow-md p-4 md:p-6">
+            <div className="bg-white rounded-xl shadow-md p-3 sm:p-4 md:p-6">
               <div className="flex justify-between items-center mb-4">
                 <h2 className="text-base md:text-lg font-semibold text-gray-800">Upcoming Bills</h2>
                 <button 
@@ -224,9 +224,9 @@ const MoneyManagementApp = () => {
               
               <div className="space-y-3 md:space-y-4">
                 {upcomingBills.map(bill => (
-                  <div key={bill.id} className="flex justify-between items-center p-3 hover:bg-gray-50 rounded-lg border border-gray-50">
+                  <div key={bill.id} className="flex justify-between items-center p-2 sm:p-3 hover:bg-gray-50 rounded-lg border border-gray-50">
                     <div className="flex items-center">
-                      <div className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center mr-3 text-xl">
+                      <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-gray-100 flex items-center justify-center mr-2 sm:mr-3 text-lg sm:text-xl">
                         {bill.icon}
                       </div>
                       <div>
@@ -442,7 +442,7 @@ const MoneyManagementApp = () => {
             <h1 className="text-xl font-bold">MoneyWise</h1>
           </div>
           
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-2 sm:space-x-4">
             <button 
               className="p-2 rounded-full hover:bg-white hover:bg-opacity-10 relative"
               onClick={handleNotificationsClick}
@@ -454,23 +454,30 @@ const MoneyManagementApp = () => {
                 </span>
               )}
             </button>
-            <div className="relative">
+            <div className="relative hidden sm:block">
               <input
                 type="text"
                 placeholder="Search..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="bg-white bg-opacity-10 text-white placeholder-white placeholder-opacity-60 rounded-full py-1 px-4 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50"
+                className="bg-white bg-opacity-10 text-white placeholder-white placeholder-opacity-60 rounded-full py-1 px-4 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50 w-40 sm:w-auto"
               />
               <Search size={16} className="absolute right-3 top-1/2 transform -translate-y-1/2 text-white opacity-60" />
             </div>
-            <div className="flex items-center space-x-2">
-              <span className="text-sm text-white">{user.name}</span>
-              <button className="p-2 rounded-full bg-white bg-opacity-20 hover:bg-opacity-30">
-                {user.avatar}
-              </button>
-            </div>
+            <button className="p-2 rounded-full bg-white bg-opacity-20 hover:bg-opacity-30">
+              {user.avatar}
+            </button>
           </div>
+        </div>
+        <div className="mt-4 sm:hidden relative">
+          <input
+            type="text"
+            placeholder="Search transactions..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="w-full bg-white bg-opacity-10 text-white placeholder-white placeholder-opacity-60 rounded-full py-2 px-4 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50"
+          />
+          <Search size={16} className="absolute right-3 top-1/2 transform -translate-y-1/2 text-white opacity-60" />
         </div>
       </header>
       
@@ -508,17 +515,17 @@ const MoneyManagementApp = () => {
       
       {/* Animated Card Slider */}
       <div className="px-4 -mt-6 mb-6 z-10 max-w-6xl mx-auto w-full">
-        <div className="flex space-x-4 overflow-x-auto pb-4 scrollbar-hide">
+        <div className="flex space-x-4 overflow-x-auto pb-4 scrollbar-hide -mx-4 px-4">
           {cards.map(card => (
             <div 
               key={card.id}
-              className={`${card.color} rounded-xl shadow-lg p-4 min-w-[16rem] transform transition duration-300 ${selectedCard === card.id ? 'scale-100' : 'scale-95 opacity-80'}`}
+              className={`${card.color} rounded-xl shadow-lg p-4 min-w-[280px] sm:min-w-[16rem] transform transition duration-300 ${selectedCard === card.id ? 'scale-100' : 'scale-95 opacity-80'}`}
               onClick={() => setSelectedCard(card.id)}
             >
               <div className="flex justify-between items-start mb-8">
                 <div>
                   <div className="text-xs text-white text-opacity-80">Available Balance</div>
-                  <div className="text-2xl font-bold text-white">${card.balance.toLocaleString('en-US', { minimumFractionDigits: 2 })}</div>
+                  <div className="text-xl sm:text-2xl font-bold text-white">${card.balance.toLocaleString('en-US', { minimumFractionDigits: 2 })}</div>
                 </div>
                 <div className="bg-white bg-opacity-20 p-1 rounded">
                   {card.type === 'Visa' ? 
@@ -534,7 +541,7 @@ const MoneyManagementApp = () => {
       </div>
       
       {/* Main Content */}
-      <main className="flex-grow p-4 max-w-6xl mx-auto w-full">
+      <main className="flex-grow px-4 pb-20 max-w-6xl mx-auto w-full">
         {renderTabContent()}
       </main>
       
