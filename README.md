@@ -2,6 +2,10 @@
 
 A modern, feature-rich money management application built with React and Vite. Track your expenses, manage savings goals, and monitor your financial health with an intuitive user interface.
 
+## Project is hosted on vercel:
+
+https://moneywise-nine.vercel.app/ 
+
 ## Features
 
 - 💰 Real-time transaction tracking and categorization
